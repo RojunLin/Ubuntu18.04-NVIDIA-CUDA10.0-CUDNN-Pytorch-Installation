@@ -1,7 +1,7 @@
 # Ubuntu18.04-NVIDIA-CUDA10.0-CUDNN-Pytorch-Installation
 
 ## 1、安装Ubuntu18.04
-在固态硬盘上安装ubuntu 16.04, 系统是装好了，不过却出现进不了桌面或者桌面闪现的现象（可以登陆tty界面），在尝试了安装nvidia驱动、修改grub，修改security boot等等方法后均没有解决问题，故放弃。个人猜测是跟bios 的设置有关。改成在机械硬盘上安装ubuntu 18.04，很快就安上了。
+在固态硬盘上安装ubuntu 16.04, 系统是装好了，不过却出现进不了桌面或者桌面闪现的现象（可以登陆tty界面），在尝试了安装nvidia驱动、修改grub，修改security boot等等方法后均没有解决问题，故放弃。个人猜测是跟bios设置的某种错误有关。改成在机械硬盘上安装ubuntu 18.04，很快就安上了。
 
 ## 2、安装NVIDIA驱动
 ### 禁用nouveau
@@ -151,7 +151,7 @@ sh ./Anaconda3-2019.03-Linux-x86_64.sh
 最后找到一个离线安装的办法，首先下载torch安装包，[下载地址](https://pytorch.org/previous-versions/) ，根据自己的python版本和cuda型号，我选择了torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl， 这里1.0.1 代表torch的版本，cp37代表支持的python 3.7，linux_x86_64代表linux系统下的64位版本。
 进入安装包的路径，执行：
 ```
- pip install torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl \\请注意不是官网上的pip3, 而是pip
+ pip install torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl  \\注意不是官网上的pip3, 而是pip
  ```
 通过import torch看是否成功安装torch。
 安装成功后，我们接着安装torchvision：
@@ -170,20 +170,18 @@ import torch
 print(torch.__version__)
 ```
 ## 7、安装openssh server服务
-将本机作为一个远程服务器，在本机运行：
+我们的目的是将本机作为一个远程服务器，在别的机子上控制本机。我们输入：
 ```
 sudo apt-get install openssh-server
 ps -ef |grep sshd
-```
-```
-ifconfig //查看本机ip
+ifconfig  //查看本机ip
 ```
 在另一台机子（client）上远程连接本机，运行： 
 ```
 ssh ip（服务器地址）
 ```
-若出现permission denied的错误，请严格参考[这篇博客](https://blog.csdn.net/weiwei_pig/article/details/50954334) 。
-具体做法是对server的sshd_config进行修改：
+若出现permission denied的错误，是因为系统默认禁止root用户登录ssh。然后我发现本机存放于文件夹/etc/ssh的sshd_config有点问题，里面所有语句都是被注释过的，所以我先从别的linux机器上把sshd_config拷贝过来进行覆盖。
+然后按照[这篇博客](https://blog.csdn.net/weiwei_pig/article/details/50954334) 的做法， 在server上运行：
 ```
 sudo passwd root //设置unix密码
 su - //注意一定是su -，不是su，这个非常重要，然后输入unix密码
@@ -197,7 +195,8 @@ gedit /etc/ssh/sshd_config
 PermitRootLogin yes
 ```
 保存并关闭文件, 接下来，我们需要重启ssh服务，我们输入：
-```/etc/init.d/ssh restart
+```
+/etc/init.d/ssh restart
 ```
 然后我们再来测试一下ssh能否连接了，我们输入：
 ```
