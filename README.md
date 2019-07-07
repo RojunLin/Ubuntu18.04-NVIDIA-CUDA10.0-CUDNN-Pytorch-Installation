@@ -208,8 +208,12 @@ ssh localhost
 sudo systemctl enable ssh
 ```
 
-# 参考网址
+## 参考网址
 [1](https://blog.csdn.net/wuzhiwuweisun/article/details/82753403)
 [2](https://blog.csdn.net/red_stone1/article/details/78727096)
 [3](https://blog.csdn.net/miao0967020148/article/details/80400357)
 [4](https://blog.csdn.net/weiwei_pig/article/details/50954334)
+
+## 软件下载链接：
+[链接](https://pan.baidu.com/s/1rebwA-ZMtAEXUfHvOMCuAg)
+提取码：nixh 
