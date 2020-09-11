@@ -5,10 +5,14 @@
 
 ## 2、安装最新的anaconda:
 先去官方地址下载好对应的安装包，然后运行：
+
 `bash ~/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh`
+
 anaconda会自动将环境变量添加到PATH里面，如果后面你发现输入conda提示没有该命令，那么你需要`source ~/.bashrc`这样就是更新环境变量，就可以正常使用了。
 如果发现这样还是没用，那么需要收到添加环境变量，打开~/.basrc 文件，在最后面加上：
+
 `export PATH=/home/aeasringnar/anaconda3/bin:$PATH`
+
 保存退出后，运行 `source ~/.bashrc`，再次输入`conda list`测试看看，应该就是没有问题啦！
 
 ## 3、给anaconda添加源：
