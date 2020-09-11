@@ -34,7 +34,7 @@ anaconda会自动将环境变量添加到PATH里面，如果后面你发现输�
 `conda activate env1`
 
 ## 6、安装cudatoolkit：
-由于anaconda一直从默认的源检索cuda，导致下载速度特别慢。为了强制从清华源下载，运行如下命令：
+由于anaconda一直从默认源检索cuda，导致下载速度特别慢。为了强制从清华源下载，运行如下命令：
 
 `conda install cudatoolkit=9.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/linux-64/`
 
@@ -43,6 +43,12 @@ anaconda会自动将环境变量添加到PATH里面，如果后面你发现输�
 
 ## 8、安装pytorch：
 `conda install pytorch torchvision pytorch`
+
+发现mkl模块老是要从默认源下载，特别慢，于是我们仍然采用手动清华源的方式进行下载：
+
+`conda install pytorch -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/linux-64/`
+
+`conda install torchvision -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/linux-64/`
 
 ## 9、另一种办法：
 首先手动下载cudatoolkit等安装包，并将安装包放入/anaconda/pkgs目录下，然后从本地安装：
