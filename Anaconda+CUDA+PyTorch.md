@@ -1,4 +1,4 @@
-#Anaconda+CUDA+PyTorch
+# Anaconda+CUDA+PyTorch
 利用anaconda装Pytorch+CUDA，无需手动安装cuda等，十分方便灵活，且可以在同个电脑上实现不同的环境配置。
 
 ## 1、更新nvidia驱动
